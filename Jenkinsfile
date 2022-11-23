@@ -53,9 +53,9 @@ pipeline {
             }
             steps{
                 container('docker') {
-                    sh 'docker login -u admin -p registry https://${registry}:443'
-                    sh 'docker build -t ${registry}:443/go_app:$BUILD_NUMBER .'
-                    sh 'docker push ${registry}:443/go_app:$BUILD_NUMBER'
+                    sh 'docker login -u admin -p registry https://${registry}:30000'
+                    sh 'docker build -t ${registry}:30000/go_app:$BUILD_NUMBER .'
+                    sh 'docker push ${registry}:30000/go_app:$BUILD_NUMBER'
                 }
             }
         }
