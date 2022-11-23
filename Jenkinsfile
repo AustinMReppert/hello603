@@ -3,7 +3,7 @@ pipeline {
     environment {
         docker_app = "go_server"
         GOCACHE = "/tmp"
-        registry = "28.105.146.150"
+        registry = "128.105.146.150"
         userid = "ar970724"
     }
     stages {
@@ -53,9 +53,9 @@ pipeline {
             }
             steps{
                 container('docker') {
-                    sh 'docker login -u admin -p registry https://${registry}:30000'
-                    sh 'docker build -t ${registry}:30000/go_app:$BUILD_NUMBER .'
-                    sh 'docker push ${registry}:30000/go_app:$BUILD_NUMBER'
+                    sh 'docker login -u admin -p registry https://${registry}:443'
+                    sh 'docker build -t ${registry}:443/go_app:$BUILD_NUMBER .'
+                    sh 'docker push ${registry}:443/go_app:$BUILD_NUMBER'
                 }
             }
         }
