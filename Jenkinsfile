@@ -3,8 +3,14 @@ pipeline {
     environment {
         docker_app = "go_app"
         GOCACHE = "/tmp"
-        registry = "128.105.146.150"
-        userid = "ar970724"
+        registry = """${sh(
+                returnStdout: true,
+                script: 'kubectl get ingress -n docker-registry -o jsonpath='{.items..metadata.annotations.docker-url}''
+            )}"""
+        userid = """${sh(
+                returnStdout: true,
+                script: 'echo "$USER"'
+            )}"""
     }
     stages {
         stage('Build') {
