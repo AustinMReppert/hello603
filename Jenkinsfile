@@ -5,7 +5,7 @@ pipeline {
         GOCACHE = "/tmp"
         registry = """${sh(
                 returnStdout: true,
-                script: 'kubectl get ingress -n docker-registry -o jsonpath='{.items..metadata.annotations.docker-url}''
+                script: 'kubectl get ingress -n docker-registry -o jsonpath=\'{.items..metadata.annotations.docker-url}\''
             )}"""
         userid = """${sh(
                 returnStdout: true,
