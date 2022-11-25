@@ -4,10 +4,10 @@ pipeline {
         docker_app = "go_app"
         GOCACHE = "/tmp"
         registry = "foo"
-        userid = """${sh(
+        userid = sh(
                 returnStdout: true,
                 script: 'echo "$USER"'
-            )}"""
+            )
     }
     stages {
         stage('Build') {
