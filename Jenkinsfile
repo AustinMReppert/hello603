@@ -65,7 +65,7 @@ pipeline {
             }
             steps {
                 sshagent(credentials: ['cloudlab']) {
-                    sh "sed -i 's@REGISTRY@$CLUSTER_HOST@g' deployment.yml"
+                    sh "sed -i 's@REGISTRY@$DOCKER_REGISTRY@g' deployment.yml"
                     sh "sed -i 's/DOCKER_APP/${docker_app}/g' deployment.yml"
                     sh "sed -i 's@BUILD_NUMBER@${BUILD_NUMBER}@g' deployment.yml"
                     sh 'scp -r -v -o StrictHostKeyChecking=no *.yml $CLUSTER_USER@$CLUSTER_HOST:~/'
