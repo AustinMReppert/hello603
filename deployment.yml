@@ -22,3 +22,17 @@ spec:
             cpu: 10m
       imagePullSecrets:
       - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-svc
+spec:
+  selector:
+    role: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 32000
+  type: NodePort
